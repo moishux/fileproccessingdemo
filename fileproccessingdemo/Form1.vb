@@ -6,7 +6,7 @@ Public Class Form1
         Try
             Dim filePath As String = "sample.txt" ' File Location
 
-            Using writer As New StreamWriter(filePath)
+            Using writer As New StreamWriter(filePath, True) 'True to apppend
                 writer.WriteLine("Hello, this is a test file!")
                 writer.WriteLine("Second line of the text.")
             End Using
@@ -16,5 +16,13 @@ Public Class Form1
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
+    End Sub
+
+    Private Sub ButtonRead_Click(sender As Object, e As EventArgs) Handles ButtonRead.Click
+        Dim filepath As String = "sample.txt"
+        Using reader As New StreamReader(filepath)
+            Dim content As String = reader.ReadToEnd()
+            MessageBox.Show("File content:" + content)
+        End Using
     End Sub
 End Class
